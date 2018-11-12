@@ -1,6 +1,5 @@
 # Django
 from django import forms
-from multiselectfield import MultiSelectField
 
 # local Django
 from .models import Alumni

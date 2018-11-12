@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import (RegexValidator, MaxValueValidator,
-                                    MinValueValidator)
+from django.core.validators import RegexValidator
 from cities_light.models import City, Country, Region
-from multiselectfield import MultiSelectField
 
 
 class Alumni(models.Model):

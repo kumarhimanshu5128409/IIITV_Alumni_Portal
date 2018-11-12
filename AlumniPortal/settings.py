@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'mptt',
     'bootstrap4',
     'cities_light',
-    'multiselectfield',
     # Application apps
     'AlumniPortal',
     'authentication',

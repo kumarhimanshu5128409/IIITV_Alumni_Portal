@@ -5,10 +5,8 @@ from cities_light.models import Country, Region, City
 
 # Django
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, UpdateView
 from django.utils.decorators import method_decorator
@@ -17,8 +15,7 @@ from django.urls import reverse, reverse_lazy
 
 from .forms import AlumniForm
 from .models import Alumni
-from .services import (search_alumni,get_alumni_by_id)
-from .utils import alumni_id_check
+from .services import get_alumni_by_id
 from .utils import check_correct_alumni
 
 
