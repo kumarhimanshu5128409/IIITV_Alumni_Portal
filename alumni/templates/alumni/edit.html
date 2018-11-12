@@ -1,0 +1,241 @@
+{% extends "AlumniPortal/base.html" %}
+
+{% load i18n %}
+
+{% load static %}
+
+{% block content %}
+    <div class="spacer"></div>
+    <div class="well">
+        <form class="form-horizontal" method="post" action="{% url 'alumni:edit' alumni.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="header">{% trans "Edit Profile" %}</legend>
+                {% if form.about.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "About Me" %}</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" rows="4" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="about">{% if form.about.value %}{{ form.about.value }}{% endif %}</textarea>
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.about.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "About Me" %}</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" rows="4" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="about">{% if form.about.value %}{{ form.about.value }}{% endif %}</textarea>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.first_name.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "First Name" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}First Name{% endblocktrans %}" name="first_name" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}">
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.first_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "First Name" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}First Name{% endblocktrans %}" name="first_name" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}">
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.last_name.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "Last Name" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Last Name{% endblocktrans %}" name="last_name" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}">
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.last_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "Last Name" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Last Name{% endblocktrans %}" name="last_name" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}">
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.email.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "Email" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Email{% endblocktrans %}" name="email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}">
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.email.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "Email" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Email{% endblocktrans %}" name="email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}">
+                        </div>
+                    </div>
+                {% endif %}
+                {% if form.permanent_address.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "permanent_address" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}permanent_address{% endblocktrans %}" name="permanent_address" value="{% if form.permanent_address.value %}{{ form.permanent_address.value }}{% endif %}">
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.permanent_address.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "permanent_address" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}permanent_address{% endblocktrans %}" name="permanent_address" value="{% if form.permanent_address.value %}{{ form.permanent_address.value }}{% endif %}">
+                        </div>
+                    </div>
+                {% endif %}
+                    <div id="div_id_current_country" class="form-group">
+                        <label class="col-md-2 control-label">
+                        {% trans "current_country" %}
+                        </label>
+                        <div class="col-md-8">
+                            <select id="select_current_country" class="form-control" name="current_country">
+                                <option value="0">-- {% trans "Select current_country" %} --</option>
+                                {% for current_country in current_country_list %}
+                                    {% if volunteer.current_country_id %}
+                                        {% if current_country.name == volunteer.current_country.name %}
+                                            <option selected value="{{current_country.name}}">{{current_country.name}}</option>
+                                        {% else %}
+                                            <option value="{{ current_country.name }}">{{ current_country.name }}</option>
+                                        {% endif %}
+                                    {% else %}
+                                        <option value="{{ current_country.name }}">{{ current_country.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_current_state" class="form-group">
+                        <label class="col-md-2 control-label">
+                        {% trans "current_state/Province" %}
+                        </label>
+                        <div class="col-md-8">
+                            <select id="select_current_state" class="form-control" name="current_state">
+                                <option value="0">-- {% trans "Select current_state" %} --</option>
+                                    {% for current_state in current_state_list %}
+                                        {% if volunteer.current_state_id %}
+                                            {% if current_state.name == volunteer.current_state.name %}
+                                                <option selected value="{{current_state.name}}">{{current_state.name}}</option>
+                                            {% else %}
+                                                <option value="{{ current_state.name }}">{{ current_state.name }}</option>
+                                            {% endif %}
+                                        {% else %}
+                                            <option value="{{ current_state.name }}">{{ current_state.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_current_city" class="form-group">
+                        <label class="col-md-2 control-label">
+                        {% trans "current_city" %}
+                        </label>
+                        <div class="col-md-8">
+                            <select id="select_current_city" class="form-control" name="current_city">
+                                <option value="0">-- {% trans "Select current_city" %} --</option>
+                                {% for current_city in current_city_list %}
+                                    {% if volunteer.current_city_id %}
+                                        {% if current_city.name == volunteer.current_city.name %}
+                                            <option selected value="{{current_city.name}}">{{current_city.name}}</option>
+                                        {% else %}
+                                            <option value="{{ current_city.name }}">{{ current_city.name }}</option>
+                                        {% endif %}
+                                    {% else %}
+                                        <option value="{{ current_city.name }}">{{ current_city.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                {% if form.phone_number.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "Phone Number" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Phone Number{% endblocktrans %}" name="phone_number" value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}">
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.phone_number.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "Phone Number" %}</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" placeholder="{% blocktrans %}Phone Number{% endblocktrans %}" name="phone_number" value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}">
+                        </div>
+                    </div>
+                {% endif %}
+                
+                {% if form.links.errors %}
+                    <div class="form-group has-error">
+                        <label class="col-md-2 control-label">{% trans "Profiles" %}</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" rows="4" placeholder="{% blocktrans %}Include links to any online profiles here{% endblocktrans %}" name="links">{% if form.links.value %}{{ form.links.value }}{% endif %}</textarea>
+                            <p class="help-block">
+                                <strong>
+                                    {% for error in form.links.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{% trans "Profiles" %}</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" rows="4" placeholder="{% blocktrans %}Include links to any online profiles here{% endblocktrans %}" name="links">{% if form.links.value %}{{ form.links.value }}{% endif %}</textarea>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <div class="col-md-12 col-md-offset-2">
+                        <button class="btn btn-primary" type="submit">{% trans "Save" %}</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

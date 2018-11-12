@@ -1,0 +1,8 @@
+{% extends "AlumniPortal/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <h1>You are already logged in, to make a new acccount <a href="{% url 'authentication:logout_process' %}">logout </a>first.</h1>
+{% endblock %}

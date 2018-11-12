@@ -1,0 +1,47 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+<div>
+	{% include "posts/post.html" with post=post%}
+	{% if post.text %}
+	<div>{{ post.text }}<div>
+	{% endif %}
+    {% if post.image %}
+        <div class="panel-group" id="accordion_image">
+            <div class="panel panel-default">
+                <div id="collapseimage" class="panel-collapse collapse in">
+                    <div class="container">
+                        <br>
+                        <img src= "{{ post.image.url }}" style = "margin-left:0%;margin-bottom:0%;" width="150" height="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<h4>Comments</h4>
+{% load mptt_tags %}
+<div class="comments">
+{% recursetree comments %}
+    <div class="comment" style="margin-left: {{ node.get_level }}0px">
+
+        <h5>
+            <a href='{% url 'posts:comment_upvote' post.pk node.pk %}' class='upvote' title='upvote'>upvote</a>
+    &nbsp;{{ node.score }}&nbsp;
+        <a href='{% url 'posts:comment_downvote' post.pk node.pk %}' class='downvote' title='downvote'>downvote</a>
+
+    </a>&nbsp;&nbsp;&nbsp;{{ node.author }} on {{ node.date }}</h5>
+        <div>{{ node.comment|linebreaks }}</div>
+        {% if user.is_authenticated %}<a href="{% url 'posts:comment_reply' post.pk node.pk %}">Reply</a>{% endif %}
+    </div>
+    {% if not node.is_leaf_node %}
+        {{ children }}
+    {% endif %}
+{% endrecursetree %}
+{% if user.is_authenticated %}
+<br/>
+<a href="{% url 'posts:comment_reply' post.pk 0 %}"> - New thread </a>
+</div>
+{% endif %}
+
+{% endblock %}

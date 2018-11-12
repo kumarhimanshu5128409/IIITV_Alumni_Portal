@@ -1,0 +1,32 @@
+{% extends "AlumniPortal/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+  <div class="container">
+  <br>
+    <div class="container">
+        <form method = 'GET' action = "">
+            <input type = "text" name = "q" placeholder="searchcommunity" value = "{{ request.GET.q }}"/>
+            <input type = "submit" value = "search" />
+        </form>
+    </div>
+    <div class="row">
+            {% for al in object_list %}
+                    {% if al.user.is_active %}
+                    <div class="col-md-3">
+                        <div class="grey-box-icon">
+                            <div class="icon-box-top grey-box-icon-pos">
+                                <img src="{{ al.profile_pic.url }}" alt="" height="125" width="200" />
+                            </div><!--icon box top -->
+                            <h4>{{ al.first_name }} {{ al.last_name }}</h4>
+                            <p><a {% if user.is_authenticated %}href="{% url 'alumni:profile' al.id %}"{% else %}href="{% url 'pages:not_allowed' %}"{% endif %}><em>Know More</em></a></p>
+                        </div><!--grey box -->
+                    </div><!--/span3-->
+                    {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

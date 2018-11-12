@@ -1,0 +1,413 @@
+{% extends "AlumniPortal/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <div class="container mt-3">
+    <form class="signup form-signup" id="signup_form" method="post" action="{% url 'registration:signup_alumni' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="header">{% trans "Sign Up" %}</h2>
+        <hr>
+        {% if user_form.username.errors %}
+            <div id="div_id_username" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_username">
+                    {% trans "Username" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_username" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Username{% endblocktrans %}" name="usr-username" maxlength="30" autofocus="autofocus" value="{{ user_form.username.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in user_form.username.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_username" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_username">
+                    {% trans "Username" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_username" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Username{% endblocktrans %}" name="usr-username" maxlength="30" autofocus="autofocus" value="{% if user_form.username.value %}{{ user_form.username.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if user_form.password.errors %}
+            <div id="div_id_password" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_password">
+                    {% trans "Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_password" class="textinput textInput form-control" type="password" placeholder="{% blocktrans %}Password{% endblocktrans %}" name="usr-password">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in user_form.password.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_password" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_password">
+                    {% trans "Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_password" class="textinput textInput form-control" type="password" placeholder="{% blocktrans %}Password{% endblocktrans %}" name="usr-password">
+                </div>
+            </div>
+        {% endif %}
+        {% if user_form.confirm_password.errors %}
+            <div id="div_id_confirm_password" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_confirm_password">
+                    {% trans "Confirm Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_confirm_password" class="textinput textInput form-control" type="password" placeholder="{% blocktrans %}Confirm Password{% endblocktrans %}" name="usr-confirm_password">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in user_form.confirm_password.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+         {% elif match_error %}
+            <div id="div_id_confirm_password" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_confirm_password">
+                    {% trans "Confirm Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_confirm_password" class="textinput textInput form-control" type="password" placeholder="{% blocktrans %}Confirm Password{% endblocktrans %}" name="usr-confirm_password">
+                    <p class="help-block">
+                        <strong>
+                         Passwords don't match.
+                       </strong>
+                     </p>
+                 </div>
+            </div>
+        {% else %}
+            <div id="div_id_confirm_password" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_confirm_password">
+                    {% trans "Confirm Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_confirm_password" class="textinput textInput form-control" type="password" placeholder="{% blocktrans %}Confirm Password{% endblocktrans %}" name="usr-confirm_password">
+                </div>
+            </div>
+        {% endif %}
+
+        {% if alumni_form.first_name.errors %}
+            <div id="div_id_first_name" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_first_name">
+                    {% trans "First Name" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_first_name" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}First Name{% endblocktrans %}" name="alu-first_name" value="{{ alumni_form.first_name.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.first_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_first_name" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_first_name">
+                    {% trans "First Name" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_first_name" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}First Name{% endblocktrans %}" name="alu-first_name" value="{% if alumni_form.first_name.value %}{{ alumni_form.first_name.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if alumni_form.last_name.errors %}
+            <div id="div_id_last_name" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_last_name">
+                    {% trans "Last Name" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_last_name" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Last Name{% endblocktrans %}" name="alu-last_name" value="{{ alumni_form.last_name.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.last_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_last_name" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_last_name">
+                    {% trans "Last Name" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_last_name" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Last Name{% endblocktrans %}" name="alu-last_name" value="{% if alumni_form.last_name.value %}{{ alumni_form.last_name.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if alumni_form.email.errors %}
+            <div id="div_id_email" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_email">
+                    {% trans "Email" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_email" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Email{% endblocktrans %}" name="alu-email" value="{{ alumni_form.email.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_email" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_email">
+                    {% trans "Email" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_email" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Email{% endblocktrans %}" name="alu-email" value="{% if alumni_form.email.value %}{{ alumni_form.email.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if alumni_form.permanent_address.errors %}
+            <div id="div_id_address" class="form-group has-error" style="width:30%">
+                <label class="control-label" for="id_pemanent_address">
+                    {% trans "Address" %}
+                </label>
+                <div class="controls">
+                    <input id="id_permanent_address" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Address{% endblocktrans %}" name="alu-permanent_address" value="{{ alumni_form.permanent_address.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.permanent_address.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_permanent_address" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_permanent_address">
+                    {% trans "Address" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_permanent_address" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Permanent Address{% endblocktrans %}" name="alu-permanent_address" value="{% if alumni_form.permanent_address.value %}{{ alumni_form.permanent_address.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+            <div id="div_id_current_country" class="form-group" style="width: 30%">
+                <label class="control-label">
+                {% trans "Country" %}
+                </label>
+                <select id="select_current_country" class="form-control" name="current_country">
+                    <option value="0">-- {% trans "Select country" %} --</option>
+                    {% for country in country_list %}
+                        <option value="{{ country.name }}">{{ country.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="div_id_current_state" class="form-group" style="width: 30%">
+                <label class="control-label">
+                {% trans "State/Province" %}
+                </label>
+                <select id="select_current_state" class="form-control" name="current_state">
+                    <option value="0">-- Select state --</option>
+                    {{statecheck}}
+                    {% for state in region_list %}
+                        <option value="{{ state.name }}">{{ state.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="div_id_current_city" class="form-group" style="width: 30%">
+                <label class="control-label">
+                    {% trans "City" %}
+                </label>
+                <select id="select_current_city" class="form-control" name="current_city">
+                    <option value="0">-- Select city --</option>
+                    {% for city in city_list %}
+                        <option value="{{ city.name }}">{{ city.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% if alumni_form.phone_number.errors %}
+            <div id="div_id_phone_number" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_phone_number">
+                    {% trans "Phone Number" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_phone_number" class="textinput textInput form-control" type="text" placeholder="Phone Number" name="alu-phone_number" value="{{ alumni_form.phone_number.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.phone_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% elif phone_error %}
+            <div id="div_id_phone_number" class="form-group has-error" style="width:30%">
+                <label class="control-label requiredField" for="id_phone_number">
+                    Phone Number<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_phone_number" class="textinput textInput form-control" type="text" placeholder="Phone Number" name="alu-phone_number" value="{{ alumni_form.phone_number.value }}">
+                    <p class="help-block">
+                        <strong>
+                            This phone number isn't valid for the selected country
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_phone_number" class="form-group" style="width: 30%">
+                <label class="control-label requiredField" for="id_phone_number">
+                    {% trans "Phone Number" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input id="id_phone_number" class="textinput textInput form-control" type="text" placeholder="Phone Number" name="alu-phone_number" value="{% if alumni_form.phone_number.value %}{{ alumni_form.phone_number.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if alumni_form.links.errors %}
+            <div id="div_id_links" class="form-group has-error" style="width:30%">
+                <label class="control-label" for="id_links">
+                    {% trans "Links" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_links" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include links to any online profiles here{% endblocktrans %}" name="alu-links">{{ alumni_form.links.value }}</textarea>
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.links.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_links" class="form-group" style="width: 30%">
+                <label class="control-label" for="id_links">
+                    {% trans "Links" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_links" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include links to any online profiles here{% endblocktrans %}" name="alu-links">{% if alumni_form.links.value %}{{ alumni_form.links.value }}{% endif %}</textarea>
+                </div>
+            </div>
+        {% endif %}
+
+{#        {% if alumni_form.about.errors %}#}
+{#            <div id="div_id_area_of_expertise" class="form-group">#}
+{#                <label class="control-label" for="id_area_of_expertise">#}
+{#                    {% trans "Area of Experties" %}#}
+{#                </label>#}
+{#                <div class="controls">#}
+{#                    <textarea id="id_about" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Where you are good at??{% endblocktrans %}" name="alu-area_of_experties">{{ alumni_form.about.value }}</textarea>#}
+{#                    <p class="help-block">#}
+{#                        <strong>#}
+{#                            {% for error in alumni_form.about.errors %}#}
+{#                                {{ error }}#}
+{#                            {% endfor %}#}
+{#                        </strong>#}
+{#                    </p>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <div id="div_id_about" class="form-group">#}
+{#                <label class="control-label" for="id_about">#}
+{#                    {% trans "About" %}#}
+{#                </label>#}
+{#                <div class="controls">#}
+{#                    <textarea id="id_about" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="alu-about">{% if alumni_form.about.value %}{{ alumni_form.about.value }}{% endif %}</textarea>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endif %}#}
+
+{#        <div id="div_id_area_of_expertise" class="form-group">#}
+{#            <label class="control-label" for="id_area_of_expertise">#}
+{#                {% trans "Area of Experties" %}#}
+{#            </label>#}
+{#            <div class="controls">#}
+{#                <input id="id_area_of_expertise" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Where, you are good at{% endblocktrans %}" name="alu-area_of_experties" value="{% if alumni_form.area_of_expertise.value %}{{ alumni_form.area_of_expertise.value }}{% endif %}">#}
+{#            </div>#}
+{#        </div>#}
+{#    #}
+        {% if alumni_form.area_of_expertise.errors %}
+            <div id="div_id_area_of_expertise" class="form-group" style="width: 30%">
+                <label class="control-label" for="id_about">
+                    {% trans "area_of_expertise" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_area_of_expertise" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="alu-area_of_expertise">{{ alumni_form.area_of_expertise.value }}</textarea>
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.area_of_expertise.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_area_of_expertise" class="form-group" style="width: 30%">
+                <label class="control-label" for="id_area_of_expertise">
+                    {% trans "Area of Expertise" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_area_of_expertise" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="alu-area_of_expertise">{% if alumni_form.area_of_expertise.value %}{{ alumni_form.area_of_expertise.value }}{% endif %}</textarea>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if alumni_form.about.errors %}
+            <div id="div_id_about" class="form-group">
+                <label class="control-label" for="id_about">
+                    {% trans "About" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_about" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="alu-about">{{ alumni_form.about.value }}</textarea>
+                    <p class="help-block">
+                        <strong>
+                            {% for error in alumni_form.about.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_about" class="form-group" style="width: 45%">
+                <label class="control-label" for="id_about">
+                    {% trans "About" %}
+                </label>
+                <div class="controls">
+                    <textarea id="id_about" class="textinput textInput form-control" type="text" placeholder="{% blocktrans %}Include a short biography of yourself{% endblocktrans %}" name="alu-about">{% if alumni_form.about.value %}{{ alumni_form.about.value }}{% endif %}</textarea>
+                </div>
+            </div>
+        {% endif %}
+
+        <div id="div_id_resume_file" class="form-group" onchange="hide_resume_textbox()">
+            <label class="control-label">{% trans "Upload a Pic" %}</label>
+            {{ alumni_form.profile_pic }}
+        </div>
+
+
+        <button type="submit" class="btn btn-lg btn-primary btn-block" style="width:30%">{% trans "Create Account" %}</button>
+        <p>
+            {% trans "Already have an account? Then please "%}<a href="{% url 'authentication:login_process' %}" class="link">{% trans "sign in" %}</a>.
+        </p>
+    </form>
+
+    </div>
+{% endblock %}

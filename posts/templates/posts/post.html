@@ -1,0 +1,19 @@
+{% load humanize %}
+
+<span class="post">
+	<a href='{% url 'posts:upvote' post.pk %}' class='upvote' title='upvote' {% if not user.is_authenticated %} onclick="alert('You need to be logged to vote')" {% endif %}>vote up</a>
+	{% if post.link %}
+	<a class="link" href="{{ post.link }}">{{ post.title }}</a><span class="comhead"> ({{post.get_domain}}) </span>
+	{% else %}
+	<a class="link" href="{% url 'posts:details' post.pk %}">{{ post.title }}</a>
+	{% endif %}
+	<span class="score">
+	{% with total=post.score %}
+		{{ total }} point{{ total|pluralize }}
+	{% endwith %}
+
+	</span> by {{ post.user }} {{ post.date}}  | <a class="comments" href="{% url 'posts:details' post.pk %}">
+	{% with total=post.comments_count %}
+		{{ total }} comment{{ total|pluralize }}
+	{% endwith %}</a>
+</span>

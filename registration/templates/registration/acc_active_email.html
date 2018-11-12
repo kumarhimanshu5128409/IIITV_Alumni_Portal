@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hi {{ user.username }},
+Please click on the link to confirm your registration,
+    <h1><a href = "http://{{ domain }}/register/signup/activate/{{ uid }}/{{token}}/">Click Here to Activate Your Account</a></h1>
+{% endautoescape %}
+

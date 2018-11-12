@@ -1,0 +1,166 @@
+{% load static %}
+{% load i18n %}
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="IIITV Alumni Portal">
+	<meta name="author" content="Alumni.com">
+	<title>IIITV_Alumni_Portal</title>
+	<link rel="favicon" href="{% static 'images/favicon.png' %}">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel='stylesheet' id='camera-css'  href="{% static 'css/camera.css'%}" type='text/css' media='all'>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>--!>
+
+
+    {#	<!-- <script src="{% static 'js/html5shiv.js' %}"></script> -->#}
+    {#	<!-- <script src="{% static 'js/respond.min.js' %}"></script> -->#}
+	<!-- [endif]-->
+
+
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+		<div class="navbar navbar-inverse" style="background-color:#333">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="{% url 'HomePage:homepage' %}">
+					<img src="{% static 'images/logo2.png'%}" alt="Techro HTML5 template" style="height:80px;width:80px; margin-top:-27%;"></a>
+			</div>
+            <div class="headings">
+                 <h4 style="margin-left:8%; margin-top:0.8%; color:#fff; font-family:sans-serif">Indian Institute of Information Technology, Vadodara</h4>
+                 <h4 style="margin-left:8% ; color:#fff; font-family:sans-serif"> Alumni Portal</h4>
+            </div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right mainNav" style="margin-top:-5%; color:#0ff;">
+					<li><a href="{% url 'pages:about_us' %}">About us</a></li>
+					<li><a href="{% url 'community:community_page' %}">Community</a></li>
+					<li><a href="{% url 'gallery:gallery_page'%}">Gallery</a></li>
+					{% if user.is_authenticated %}
+                        <li><a href="{% url 'posts:index'%}">Discussion</a></li>
+                        <li><a href="{% url 'authentication:logout_process'%}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pages:not_allowed'%}">Discussion</a></li>
+					    <li><a href="{% url 'authentication:login_process'%}">Log In</a></li>
+                    {% endif %}
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+    <div class="container mt-3">
+        {% block content %}
+            No content.
+        {% endblock %}
+    </div>
+
+    <!-- footer -->
+
+    <br>
+    <br> <br> <br>
+    <!--<footer id="footer"> -->
+    <footer id="footer" style="margin-top:-1%; padding-top:0%; padding-bottom:0%" >
+
+    <div >
+        <div class="social text-center" style="margin-top:1%; padding-top:0%; padding-bottom:0%">
+
+            <i class="fa fa-map-marker" style="font-size:18px"> </i>&nbsp
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+            Sector 28, Block #9, GEC, Gandhinagar  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+            <i class="fa fa-phone" style="font-size:18px"></i>
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+                +91 079 232 3478X &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                &nbsp;</h6>
+             <i class="fa fa-envelope" style="font-size:18px" ></i>
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+                alumni_representative@iiitv.ac.in &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+        </div><!-- end widget -->
+
+        <div class="social text-center" style="margin-top:-1%; padding-top:0%; padding-bottom:-1%">
+				<a href="#"><i class="fa fa-twitter"></i> </a>
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+			</div>
+
+			<div class="clear"></div>
+
+		<<div class="footer2 text-center">
+			<div class="container ">
+				<div class="row">
+
+					<div class="text-center">
+						<div class="panel-body">
+							<p class="simplenav">
+								<a href="{% url 'HomePage:homepage' %}">Home</a> |
+								<a href="{% url 'pages:about_us' %}">About</a> |
+								<a href="{% url 'community:community_page' %}">Community</a> |
+								<a href="{% url 'gallery:gallery_page' %}">Gallery</a> |
+								<a href="{% url 'pages:contact_us' %}">Contact Us</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- /row of panels -->
+			</div>
+		</div>
+	</footer>
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="{% static 'js/modernizr-latest.js' %}"></script>
+	<script type='text/javascript' src='{% static 'js/jquery.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/fancybox/jquery.fancybox.pack.js' %}'></script>
+    
+    <script type='text/javascript' src='{% static 'js/jquery.mobile.customized.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.easing.1.3.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/camera.min.js' %}'></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+    <script>
+		jQuery(function(){
+			
+			jQuery('#camera_wrap_4').camera({
+                transPeriod: 500,
+                time: 3000,
+				height: '600',
+				loader: 'false',
+				pagination: true,
+				thumbnails: false,
+				hover: false,
+                playPause: false,
+                navigation: false,
+				opacityOnGrid: false,
+				imagePath: '{% static 'images' %}'
+			});
+
+		});
+      
+	</script>
+    
+</body>
+</html>

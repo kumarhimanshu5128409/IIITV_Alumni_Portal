@@ -1,0 +1,78 @@
+{% extends "AlumniPortal/base.html" %}
+{% load i18n %}
+{% block content %}
+    <form class="login form-signin" role="form" method="POST" action="{% url 'authentication:login_process' %}">
+        {% csrf_token %}
+        <h2 class="header">{% trans "Please sign in" %}</h2>
+        <hr>
+        {% if is_invalid_credentials %}
+            <div class="alert alert-danger">
+                {% trans "The username and/or password you specified are not correct." %}
+            </div>
+        {% endif %}
+        {% if authentication_form.username.errors %}
+            <div id="div_id_login" class="form-group has-error">
+                <label for="id_login" class="control-label requiredField">
+                    {% trans "Username" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input class="textinput textInput form-control" id="id_login" name="username" placeholder="{% blocktrans %}Username{% endblocktrans %}" type="text" autofocus="autofocus" value="{{ authentication_form.username.value }}">
+                    <p class="help-block">
+                        <strong>
+                            {% for error in authentication_form.username.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div id="div_id_login" class="form-group" style="width:30%">
+                <label for="id_login" class="control-label requiredField">
+                    {% trans "Username" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="controls">
+                    <input class="textinput textInput form-control" id="id_login" name="username" placeholder="{% blocktrans %}Username{% endblocktrans %}" type="text" autofocus="autofocus" value="{% if authentication_form.username.value %}{{ authentication_form.username.value }}{% endif %}">
+                </div>
+            </div>
+        {% endif %}
+        {% if authentication_form.password.errors %}
+            <div id="div_id_password" class="form-group has-error">
+                <label for="id_password" class="control-label" requiredField>
+                    {% trans "Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="control">
+                    <input class="textinput textInput form-control" id="id_password" name="password" placeholder="{% blocktrans %}Password{% endblocktrans %}" type="password">
+                </div>
+                <p class="help-block">
+                    <strong>
+                        {% for error in authentication_form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </strong>
+                </p>
+            </div>
+        {% else %}
+            <div id="div_id_password" class="form-group" style="width:30%">
+                <label for="id_password" class="control-label" requiredField>
+                    {% trans "Password" %}<span class="asteriskField">*</span>
+                </label>
+                <div class="control">
+                    <input class="textinput textInput form-control" id="id_password" name="password" placeholder="{% blocktrans %}Password{% endblocktrans %}" type="password">
+                </div>
+            </div>
+        {% endif %}
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            "Make sure your account is activated, or, Your username and password didn't match. Please try again."
+        </div> <!-- alert alert-danger -->
+        {% endif %}
+         <a class="link" href="{% url 'authentication:password_reset' %}" id="forgot">Forgot password</a>
+        <button class="primaryAction btn btn-lg btn-primary btn-block" type="submit" style="width:30%">
+            {% trans "Sign In" %}
+        </button>
+        <p>
+            {% trans "Didn't have an account? Then please "%}<a href="{% url 'registration:signup_alumni' %}" class="link">{% trans "sign up" %}</a>.
+        </p>
+    </form>
+{% endblock %}

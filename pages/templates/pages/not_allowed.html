@@ -1,0 +1,8 @@
+{% extends "AlumniPortal/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <h1>You have to <a href="{% url 'authentication:login_process' %}">login </a>first, to access the page.</h1>
+{% endblock %}

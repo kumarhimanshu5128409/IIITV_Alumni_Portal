@@ -1,0 +1,163 @@
+{% extends "AlumniPortal/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="spacer"></div>
+    <div class="row">
+        <hr>
+        <div class="col-md-12">
+            {% if alumni.profile_pic %}
+                <div class="panel-group" id="accordion_profile_pic">
+                    <div class="panel panel-default">
+{#                        <div class="panel-heading">#}
+{#                            <h4 class="panel-title">#}
+{#                                <a data-toggle="collapse" data-parent="#accordion_profile_pic" href="#collapseProfilePic">#}
+{#                                    {% trans "Profile Pic" %}#}
+{#                                </a>#}
+{#                            </h4>#}
+{#                        </div>#}
+                        <div id="collapseProfilePic" class="panel-collapse collapse in">
+                            <div class="container">
+                                <br>
+                                <img src= "{{ alumni.profile_pic.url }}" style = "margin-left:0%;margin-bottom:0%;" width="350" height="250">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="panel-group" id="accordion_about">
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion_about" href="#collapseAbout">
+                                {% trans "Name" %}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseAbout" class="panel-collapse collapse in">
+                        <div class="container">
+                            <h1>
+                                {{ alumni.first_name }} {{ alumni.last_name }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if alumni.about %}
+            <div class="panel-group" id="accordion_about">
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion_about" href="#collapseAbout">
+                                {% trans "About" %}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseAbout" class="panel-collapse collapse in">
+                        <div class="container" >
+                            <br>
+                            {{ alumni.about }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if alumni.permanent_address %}
+            <div class="panel-group" id="accordion_per_add">
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion_per_add" href="#collapsePermanentAddress">
+                                {% trans "Address" %}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapsePermanentAddress" class="panel-collapse collapse in">
+                        <div class="container">
+                            <br>
+                            {{ alumni.permanent_address }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="panel panel-default">
+                <br>
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        {% trans "Details" %}
+                    </h4>
+                </div>
+                <div class="container">
+                <table>
+                    <tr><td class="centered"><h4>Email : </h4></td><td class="centered">{{ alumni.email }}</td></tr>
+                    <tr><td class="centered"><h4>City : </h4></td><td class="centered">{{ alumni.current_city }}</td></tr>
+                    <tr><td class="centered"><h4>State/Province : </h4></td><td class="centered">{{ alumni.current_state }}</td></tr>
+                    <tr><td class="centered"><h4>Country : </h4></td><td class="centered">{{ alumni.current_country }}</td></tr>
+                    <tr><td class="centered"><h4>Phone NO : </h4></td><td class="centered">{{ alumni.phone_number }}</td></tr>
+                </table>
+                </div>
+                <br>
+            </div>
+
+            {% if alumni.links %}
+                <div class="panel-group" id="accordion_profiles">
+                    <br>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion_profiles" href="#collapseProfiles">
+                                    {% trans "Additional Profiles" %}
+                                </a>
+                            </h4>
+                        </div>
+                        <br>
+                        <div id="collapseProfiles" class="panel-collapse collapse in">
+                            <div class="container">
+                                {{ alumni.links }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            {% endif %}
+
+            {% if alumni.area_of_expertise %}
+                <div class="panel-group" id="accordion_profiles">
+                    <br>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion_profiles" href="#collapseProfiles">
+                                    {% trans "Area Of Experties" %}
+                                </a>
+                            </h4>
+                        </div>
+                        <br>
+                        <div id="collapseProfiles" class="panel-collapse collapse in">
+                            <div class="container">
+                                {{ alumni.area_of_expertise }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            {% endif %}
+
+{#            {% if alumni.user.pk == alumni.id %}#}
+{#            <div class="panel panel-default">#}
+{#                <div class="panel-body">#}
+{#                    <a href="{% url 'alumni:edit' alumni.id %}" class="btn btn-primary">{% trans "Edit Profile" %}</a>#}
+{#                </div>#}
+{#            </div>#}
+{#            {%  endif %}#}
+        </div>
+    </div>
+{% endblock %}

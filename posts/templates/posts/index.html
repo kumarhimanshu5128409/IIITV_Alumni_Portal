@@ -1,0 +1,24 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+    <div class="container" >
+        <form method = 'GET' action = "">
+            <input type = "text" name = "q" placeholder="searchcommunity" value = "{{ request.GET.q }}"/>
+            <input type = "submit" value = "search" />
+        </form>
+    </div>
+    {% for post in posts %}
+    <ol class="posts">
+    <li >{% include "posts/post.html" with post=post %}</li>
+    </ol>
+    {% endfor %}
+
+    <div class="pagination">
+            {% if posts.has_previous %}
+                <a href="?p={{ posts.previous_page_number }}">Previous</a>
+            {% endif %}
+            {% if posts.has_next %}
+                <a class="next" href="?p={{ posts.next_page_number }}">Next</a>
+            {% endif %}
+    </div>
+{% endblock %}

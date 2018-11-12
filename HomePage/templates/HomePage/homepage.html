@@ -1,0 +1,299 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Our template">
+	<meta name="author" content="No where">
+	<title>IIITV Alumni Portal</title>
+	<link rel="favicon" href="{% static 'favicon.png' %}">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel='stylesheet' id='camera-css'  href="{% static 'css/camera.css'%}" type='text/css' media='all'>
+
+</head>
+<body>
+
+
+    <!-- Fixed navbar -->
+    		<div class="navbar navbar-inverse" style="background-color:#333">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="{% url 'HomePage:homepage' %}">
+					<img src="{% static 'images/logo2.png'%}" alt="" style="height:80px;width:80px; margin-top:-27%;"></a>
+			</div>
+            <div class="headings">
+                 <h4 style="margin-left:8%; margin-top:0.8%; color:#fff; font-family:sans-serif">Indian Institute of Information Technology, Vadodara</h4>
+                 <h4 style="margin-left:8% ; color:#fff; font-family:sans-serif"> Alumni Portal</h4>
+            </div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right mainNav" style="margin-top:-5%; color:#0ff;">
+					<li><a href="{% url 'pages:about_us' %}">About us</a></li>
+					<li><a href="{% url 'community:community_page' %}">Community</a></li>
+					<li><a href="{% url 'gallery:gallery_page'%}">Gallery</a></li>
+					{% if user.is_authenticated %}
+                        <li><a href="{% url 'posts:index'%}">Discussion</a></li>
+                        <li><a href="{% url 'authentication:logout_process'%}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pages:not_allowed'%}">Discussion</a></li>
+					    <li><a href="{% url 'authentication:login_process'%}">Log In</a></li>
+                    {% endif %}
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+	<!-- Header -->
+	<header id="head">
+		<div class="container">
+             <div class="heading-text">
+							<h1 class="animated flipInY delay1">Connect Today, Transform Tomorrow</h1>
+						</div>
+
+					<div class="fluid_container">
+                    <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+                        <div  data-src= "{% static 'images/HomePage/Imgmy.png' %}">
+                        </div>
+                        <div data-src="{% static 'images/HomePage/IIIT.jpg' %}">
+                        </div>
+                        <div data-src="{% static 'images/HomePage/Best.jpg' %}">
+                        </div>
+                    </div><!-- #camera_wrap_3 -->
+                </div><!-- .fluid_container -->
+		</div>
+	</header>
+	<!-- /Header -->
+
+  <div class="container">
+    <div class="row">
+					<div class="col-md-4">
+						<div class="grey-box-icon">
+							<div class="icon-box-top grey-box-icon-pos">
+								<img src="{% static 'images/alum.jpg' %}" alt="" height="125" width="200" />
+							</div><!--icon box top -->
+							<h4>Meet Your Alumni</h4>
+							<p> Lookup your alumni on this network. Connect with your peers, seniors and other people.
+							</p> Find your freinds with same frequency !!!
+     						<p><a href="{% url 'community:community_page' %}"><em>Read More</em></a></p>
+						</div><!--grey box -->
+					</div><!--/span3-->
+                    <div class="col-md-4">
+						<div class="grey-box-icon">
+							<div class="icon-box-top grey-box-icon-pos">
+								<img src="{% static 'images/monkimage.png' %}" alt=""  />
+							</div><!--icon box top -->
+							<h4>Latest Updates</h4>
+							<p>Take a sneak peek on the latest advancements in our institute! Lookout for any Alumni meets and
+                                register for the oncoming events.</p>
+     						<p><a href="#"><em>Read More</em></a></p>
+						</div><!--grey box -->
+					</div><!--/span3-->
+					<div class="col-md-4">
+						<div class="grey-box-icon">
+							<div class="icon-box-top grey-box-icon-pos">
+								<img src="{% static 'images/placement.jpg' %}" alt="" height="125" width="220" />
+							</div><!--icon box top -->
+							<h4>Placements</h4>
+							<p> Have a look at the excellent placement record of our institute. For more information, visit the
+                            official website at Training and Placement cell. </p>
+     						<p><a href="https://sites.google.com/iiitvadodara.ac.in/placements/home"><em>Read More →</em></a></p>
+						</div><!--grey box -->
+					</div><!--/span3-->
+
+				</div>
+    </div>
+
+
+    <section class="container">
+      <div class="row">
+      	<div class="col-md-8"><div class="title-box clearfix "><h2 class="title-box_primary">About Us</h2></div>
+        <p><span>Indian Institute of Information Technology Vadodara (IIIT-V) is established by the Ministry of Human Resource Development (MHRD) , Government Of India under Public Private Partnership (PPP) as Institute of National Importance with a view to develop new knowledge in information technology and to provide manpower of global standards for the
+        information technology industry and to provide for certain other matters connected with such institutions or incidental thereto.</span></p>
+        <p> The partners in this project are Government Of India, Government of Gujarat, Gujarat Energy Research and Management Institute, Gujarat State Fertilizers and Chemicals and Tata Consultancy Services. The Institute was established in the year 2013. At present, IIIT-V is operating from its temporary premises at Government Engineering
+            College (Gandhinagar) till the time its new campus is made operational at Vadodara, Gujarat. The Government of Gujarat has lent support to the Institute by providing 50 acres of land at Dumad, Vadodara and a Academic Block at GEC, Gandhinagar</p>
+        <a href="#" title="read more" class="btn-inline " target="_self">Read more</a> </div>
+
+
+          <div class="col-md-4" ><div class="title-box clearfix"><h2 class="title-box_primary">Up Coming Events</h2></div>
+            <div class="list styled custom-list">
+            <ul> <marquee direction = "up" scrollamount = "2" onmouseover="this.stop();" onmouseout="this.start();" >
+            <li style="margin-bottom:1%"><a title="Batch 2016 Alumni Meet" href="#" style="font-size:17px">Batch 2016 Alumni Meet</a></li>
+            <li style="margin-bottom:1%"><a title="1Ramp ICO" href="#" style="font-size:17px"> 1Ramp ICO at IIITV</a></li>
+            <li style="margin-bottom:1%"><a title="Batch 2017 Alumni Meet" href="#" style="font-size:17px">Batch 2017 Alumni Meet</a></li>
+            <li style="margin-bottom:1%"><a title="Convocation 2019" href="#"style="font-size:17px">Convocation 2019</a></li>
+            <li style="margin-bottom:1%"><a title="Felicitation Ceremony" href="#"style="font-size:17px">Felicitation Ceremony</a></li>
+
+                </marquee>
+            </ul>
+            </div>
+         </div>
+      </div>
+      </section>
+
+      <section class="news-box top-margin">
+        <div class="container">
+            <h2><span>Past Events</span></h2>
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="newsBox">
+                        <div class="thumbnail">
+                            <figure><img src="{% static 'images/image.jpg' %}" alt=""></figure>
+                            <div class="caption maxheight2">
+                            <div class="box_inner">
+                                        <div class="box">
+                                            <p class="title"><h5>iiitv_init() '18</h5></p>
+                                            <p> Coding club of IIITV organized a competitive coding contest for freshers to showcase their coding skills.
+                                            </p> <p> <a href="#"><em>Read More →</em></a> </p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="newsBox">
+                        <div class="thumbnail">
+                            <figure><img src="{% static 'images/alfz.jpg' %}" alt="" height="197"></figure>
+                            <div class="caption maxheight2">
+                           <div class="box_inner">
+                                        <div class="box">
+                                            <p class="title"><h5>Alfaaz</h5></p>
+                                            <p>Literary committee of IIITV organized a pen mic event, 'Alfaaz' to allow the newcomers to familiarize ...
+                                            </p> <p> <a href="#"><em>Read More →</em></a> </p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="newsBox">
+                        <div class="thumbnail">
+                            <figure><img src="{% static 'images/mian poster.png' %}" alt="" height="197"></figure>
+                            <div class="caption maxheight2">
+                            <div class="box_inner">
+                                        <div class="box">
+                                            <p class="title"><h5>Cerebro</h5></p>
+                                            <p>Technical committee of IIITV organized a technical event, Cerebro which included a no. of events like Ideathon ...
+                                            </p> <p> <a href="#"><em>Read More →</em></a> </p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer id="footer" style="margin-top:-1%; padding-top:0%; padding-bottom:0%" >
+
+    <div >
+        <div class="social text-center" style="margin-top:1%; padding-top:0%; padding-bottom:0%">
+
+            <i class="fa fa-map-marker" style="font-size:18px"> </i>&nbsp
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+            Sector 28, Block #9, GEC, Gandhinagar  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+            <i class="fa fa-phone" style="font-size:18px"></i>
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+                +91 079 232 3478X &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                &nbsp;</h6>
+             <i class="fa fa-envelope" style="font-size:18px" ></i>
+            <h6 style="display: inline-block;
+                font-size: 1em;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                margin-left: 0em;
+                margin-right: 0;">
+                alumni_representative@iiitv.ac.in &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+        </div><!-- end widget -->
+
+        <div class="social text-center" style="margin-top:-1%; padding-top:0%; padding-bottom:-1%">
+				<a href="#"><i class="fa fa-twitter"></i> </a>
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+			</div>
+
+			<div class="clear"></div>
+
+		<<div class="footer2 text-center">
+			<div class="container ">
+				<div class="row">
+
+					<div class="text-center">
+						<div class="panel-body">
+							<p class="simplenav">
+								<a href="{% url 'HomePage:homepage' %}">Home</a> |
+								<a href="{% url 'pages:about_us' %}">About</a> |
+								<a href="{% url 'community:community_page' %}">Community</a> |
+								<a href="{% url 'gallery:gallery_page' %}">Gallery</a> |
+								<a href="{% url 'pages:contact_us' %}">Contact Us</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- /row of panels -->
+			</div>
+		</div>
+	</footer>
+
+    <br>
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="{% static 'js/modernizr-latest.js' %}"></script>
+	<script type='text/javascript' src='{% static 'js/jquery.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/fancybox/jquery.fancybox.pack.js' %}'></script>
+
+    <script type='text/javascript' src='{% static 'js/jquery.mobile.customized.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/jquery.easing.1.3.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/camera.min.js' %}'></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"> </script>
+	<script src="{% static 'js/custom.js' %}"></script>
+    <script>
+		jQuery(function(){
+
+			jQuery('#camera_wrap_4').camera({
+                transPeriod: 500,
+                time: 3000,
+				height: '600',
+				loader: 'false',
+				pagination: true,
+				thumbnails: false,
+				hover: false,
+                playPause: false,
+                navigation: false,
+				opacityOnGrid: false,
+				imagePath: '{% static 'images' %}'
+			});
+
+		});
+
+	</script>
+
+</body>
+</html>
+
+
+

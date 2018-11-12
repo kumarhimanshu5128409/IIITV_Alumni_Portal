@@ -1,0 +1,33 @@
+{% extends "AlumniPortal/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<section class="news-box top-margin">
+        <div class="container">
+            <h2><span>Gallery</span></h2>
+            <div class="row">
+                {% for img in images %}
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="newsBox">
+                        <div class="thumbnail">
+                            {% with "images/gallery/"|add:img as path %}
+                            <figure><img src="{% static path %}" alt="" width="300" height="200"></figure>
+                            {% endwith %}
+                            <div class="caption maxheight2">
+                            <div class="box_inner">
+                                        <div class="box">
+                                            <p class="title"><h5>Image {{ forloop.counter }}</h5></p>
+{#                                            <p>{{ img }}</p>#}
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
