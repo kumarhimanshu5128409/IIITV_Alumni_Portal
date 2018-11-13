@@ -1,0 +1,1 @@
+web: gunicorn alumni-iiitv.wsgi --log-file -
